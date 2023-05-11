@@ -1,0 +1,23 @@
+name: Package
+
+on:
+  push:
+    branches:
+      - 'master'
+      
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: full
+  
+jobs:
+  package:
+    name: package
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Update submodules
+      run: git submodule update --init
+    - name: Build contract
+      run: make all-via-docker
+    - name: upload-acp-file
+      run: ls ${{ github.workspace }}
