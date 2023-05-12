@@ -19,7 +19,7 @@ jobs:
 #       run: git submodule update --init
 #     - name: Build contract
 #       run: make all-via-docker
-    - uses: sgpublic/delete-release-action@main
+    - uses: sgpublic/delete-release-action@v1
       with:
         release-drop: true
         release-drop-tag: true
