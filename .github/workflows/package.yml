@@ -19,13 +19,17 @@ jobs:
 #       run: git submodule update --init
 #     - name: Build contract
 #       run: make all-via-docker
-    - uses: wow-actions/delete-stale-releases@v1
+    - uses: sgpublic/delete-release-action@v1.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        keep_latest_count: 0
-        delete_tags: true
+        release-drop: true
+        release-keep-count: -1
+        release-drop-tag: true
+        pre-release-drop: true
+        pre-release-keep-count: -1
+        pre-release-drop-tag: true
+        draft-drop: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
