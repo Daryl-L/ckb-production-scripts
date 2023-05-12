@@ -19,15 +19,10 @@ jobs:
 #       run: git submodule update --init
 #     - name: Build contract
 #       run: make all-via-docker
-    - uses: sgpublic/delete-release-action@v1.0
+    - uses: dev-drprasad/delete-older-releases@v0.2
       with:
-        release-drop: true
-        release-keep-count: -1
-        release-drop-tag: true
-        pre-release-drop: true
-        pre-release-keep-count: -1
-        pre-release-drop-tag: true
-        draft-drop: true
+        keep_latest: 0
+        delete_tag_pattern: test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
