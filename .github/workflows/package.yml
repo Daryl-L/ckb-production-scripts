@@ -37,6 +37,8 @@ jobs:
         prerelease: false
     - name: upload-acp-file
       uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         asset_path: ${{ github.workspace }}/build/anyone_can_pay
         asset_name: anyone_can_pay
