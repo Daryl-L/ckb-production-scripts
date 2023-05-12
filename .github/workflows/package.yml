@@ -19,15 +19,16 @@ jobs:
 #       run: git submodule update --init
 #     - name: Build contract
 #       run: make all-via-docker
-    - id: commit
-      uses: pr-mpt/actions-commit-hash@v2
+    - uses: luccas-freitas/delete-older-releases@v0.0.1
+      with:
+        delete_tag_pattern: test
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        tag_name: ${{ steps.commit.outputs.short }}
+        tag_name: test
         release_name: Release CKB Production Scripts
         draft: false
         prerelease: false
