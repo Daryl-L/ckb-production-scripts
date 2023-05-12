@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-#     - name: Update submodules
-#       run: git submodule update --init
-#     - name: Build contract
-#       run: make all-via-docker
+    - name: Update submodules
+      run: git submodule update --init
+    - name: Build contract
+      run: make all-via-docker
     - uses: dev-drprasad/delete-older-releases@v0.2.1
       with:
         keep_latest: 0
-        delete_tag_pattern: test
+        delete_tag_pattern: scripts
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release
@@ -31,14 +31,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        tag_name: test
+        tag_name: scripts
         release_name: Release CKB Production Scripts
         draft: false
         prerelease: false
-#     - name: upload-acp-file
-#       uses: actions/upload-release-asset@v1
-#       with:
-#         name: anyone_can_pay
-#         asset_path: ${{ github.workspace }}/build/anyone_can_pay
-#         asset_name: anyone_can_pay
-#         upload_url: ${{ steps.create_release.outputs.upload_url }}
+    - name: upload-acp-file
+      uses: actions/upload-release-asset@v1
+      with:
+        name: anyone_can_pay
+        asset_path: ${{ github.workspace }}/build/anyone_can_pay
+        asset_name: anyone_can_pay
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
