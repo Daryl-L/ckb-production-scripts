@@ -19,7 +19,7 @@ jobs:
 #       run: git submodule update --init
 #     - name: Build contract
 #       run: make all-via-docker
-    - uses: dev-drprasad/delete-older-releases@v0.2
+    - uses: dev-drprasad/delete-older-releases@v0.2.1
       with:
         keep_latest: 0
         delete_tag_pattern: test
