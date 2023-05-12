@@ -15,24 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Update submodules
-      run: git submodule update --init
-    - name: Build contract
-      run: make all-via-docker
+#     - name: Update submodules
+#       run: git submodule update --init
+#     - name: Build contract
+#       run: make all-via-docker
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.CKB_PRODUCTION_SCRIPT }}
+        GITHUB_TOKEN: ${{secrets.PAT}}
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
-    - name: upload-acp-file
-      uses: actions/upload-release-asset@v1
-      with:
-        name: anyone_can_pay
-        asset_path: ${{ github.workspace }}/build/anyone_can_pay
-        asset_name: anyone_can_pay
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
+#     - name: upload-acp-file
+#       uses: actions/upload-release-asset@v1
+#       with:
+#         name: anyone_can_pay
+#         asset_path: ${{ github.workspace }}/build/anyone_can_pay
+#         asset_name: anyone_can_pay
+#         upload_url: ${{ steps.create_release.outputs.upload_url }}
