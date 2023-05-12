@@ -19,13 +19,15 @@ jobs:
 #       run: git submodule update --init
 #     - name: Build contract
 #       run: make all-via-docker
+    - id: commit
+      uses: pr-mpt/actions-commit-hash@v2
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        tag_name: ${ github.sha::7 }
+        tag_name: ${{ steps.commit.outputs.short }}
         release_name: Release CKB Production Scripts
         draft: false
         prerelease: false
