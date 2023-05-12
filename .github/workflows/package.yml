@@ -21,6 +21,7 @@ jobs:
 #       run: make all-via-docker
     - uses: sgpublic/delete-release-action@v1.0
       with:
+        release-keep-count: -1
         release-drop: true
         release-drop-tag: true
       env:
