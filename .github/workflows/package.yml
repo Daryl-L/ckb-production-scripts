@@ -44,3 +44,22 @@ jobs:
         asset_name: anyone_can_pay
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_content_type: application/octet-stream
+    - name: upload-omni_lock-file
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        asset_path: ${{ github.workspace }}/build/omni_lock
+        asset_name: omni_lock
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_content_type: application/octet-stream
+    - name: upload-sudt-file
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        asset_path: ${{ github.workspace }}/build/simple_udt
+        asset_name: simple_udt
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_content_type: application/octet-stream
+
